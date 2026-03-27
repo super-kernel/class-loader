@@ -30,6 +30,7 @@ final class ClassLoaderProvider
 	{
 		if (!isset(self::$classLoader)) {
 			self::$classLoader = $container->get(ClassLoader::class);
+			self::$classLoader->register();
 		}
 		return self::$classLoader;
 	}
