@@ -1,0 +1,28 @@
+{
+    "name": "super-kernel/class-loader",
+    "description": "The class-loader component for super kernel.",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/super-kernel/class-loader",
+    "support": {
+        "issues": "https://github.com/super-kernel/class-loader/issues",
+        "source": "https://github.com/super-kernel/class-loader"
+    },
+    "autoload": {
+        "psr-4": {
+            "SuperKernel\\ClassLoader\\": "src/"
+        }
+    },
+    "config": {
+        "classmap-authoritative": true,
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": "~8.4.0",
+        "super-kernel/attribute": "~1.0.0",
+        "super-kernel/contract": "~1.0.0"
+    }
+}
