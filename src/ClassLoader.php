@@ -4,22 +4,24 @@ declare(strict_types=1);
 namespace SuperKernel\ClassLoader;
 
 use RuntimeException;
-use SuperKernel\Contract\ClassAutoloaderInterface;
+use SuperKernel\Contract\ClassLoaderInterface;
+use function spl_autoload_register;
+use function spl_autoload_unregister;
 
-final class ClassLoader implements ClassAutoloaderInterface
+final readonly class ClassLoader implements ClassLoaderInterface
 {
-	public function __construct(private array $classMap = [])
+	public function __construct(private array $classMap)
 	{
 	}
 
-	public function addClassMap(array $classMap): void
+	public function getClassMap(): array
 	{
-		$this->classMap = array_merge($this->classMap, $classMap);
+		return $this->classMap;
 	}
 
-	public function register(): void
+	public function register(bool $prepend = false): void
 	{
-		if (!spl_autoload_register([$this, '__autoload'], true, true)) {
+		if (!spl_autoload_register([$this, '__autoload'], prepend: $prepend)) {
 			throw new RuntimeException('Failed to register ClassAutoloader to the top of the SPL stack.');
 		}
 	}
